@@ -214,8 +214,7 @@
         scanIframes(window);
         return docs;
     }
-
-    function cleanText(el) {
+        function cleanText(el) {
         if (!el) return '';
         let clone = el.cloneNode(true);
         clone.querySelectorAll('feedbackInline, feedbackBlock, script, style, select, option, button, .sr-only, .visually-hidden, [class*="transcript"], [class*="rubric"]').forEach(n => n.remove());
@@ -373,8 +372,7 @@
         }
         return null;
     }
-
-    async function runFullAutoSolve() {
+        async function runFullAutoSolve() {
         const allDocs = getAllDocs();
         const btn = document.getElementById('dg-auto-solve');
         if (btn) btn.innerHTML = '⏳ Đang giải...';
@@ -450,8 +448,8 @@
             // 3. TÔ MÀU HIGHLIGHT
             const hlActions = actions.filter(a => a.type === 'highlight');
             if (hlActions.length > 0) {
-                const penBtn = activeRoot.querySelector('[data-identifier^="GT"], .highlighter, [class*="highl
-                                                        if (penBtn) {
+                const penBtn = activeRoot.querySelector('[data-identifier^="GT"], .highlighter, [class*="highlighter"], [class*="pen"], [class*="tool"]:not([class*="eraser"])');
+                if (penBtn) {
                     simulateRealClick(penBtn);
                     await sleep(120);
                 }
@@ -516,9 +514,8 @@
             btn.innerHTML = totalSolved > 0 ? `✅ Đã giải (${totalSolved})` : '⚠️ Không khớp ô';
             setTimeout(() => { btn.innerHTML = '🤖 Auto Giải Hết'; }, 2200);
         }
-    }
-
-    function processXML() {
+        }
+        function processXML() {
         const contentDiv = document.getElementById('ollie-content');
         if (!contentDiv) return;
 
